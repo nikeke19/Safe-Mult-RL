@@ -1,6 +1,7 @@
 # SAC Config
 
 name: "SAC"
+load_model_dir: null
 base:
   learning_rate: 3e-4
   buffer_size: 1_000_000  # 1e6
@@ -14,7 +15,9 @@ base:
   replay_buffer_class: null
   replay_buffer_kwargs: null
   optimize_memory_usage: False
-  policy_kwargs: ${model.policy_kwargs}
+  policy_kwargs:
+    use_bayes: False
+    use_beta_dist: False
   ent_coef: "auto"
   target_update_interval: 1
   target_entropy: "auto"
@@ -23,7 +26,7 @@ base:
   use_sde_at_warmup: False
   tensorboard_log: null
   create_eval_env: False
-  verbose: 0
+  verbose: True
   seed: null
   device: "auto"
   _init_setup_model: True
@@ -40,7 +43,3 @@ safe_rl:
   optimize_gamma_col_net: False
   gamma_col_net_target: 0.8
   action_penalty: False
-
-policy_kwargs:
-  use_bayes: False
-  use_beta_dist: False

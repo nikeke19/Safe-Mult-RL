@@ -4,10 +4,8 @@ defaults:
   - train: train
 
 env_name: "lunar_lander"
-load_model_dir: null
 seed: 0
 
-# Override common
 model:
   base:
-    learning_rate: 100
+    device: "cuda"

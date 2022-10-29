@@ -1,6 +1,7 @@
 # PPO Config
 
 name: "PPO"
+load_model_dir: null
 base:
   learning_rate: 3e-4
   n_steps: 2048
@@ -13,13 +14,16 @@ base:
   ent_coef: 0.0
   vf_coef: 0.5
   max_grad_norm: 0.5
-  policy_kwargs: ${model.policy_kwargs}
+  policy_kwargs:
+    use_beta_dist: False
+    use_bayes: False
+    log_std_init: 0.0
   use_sde: False
   sde_sample_freq: -1
   target_kl: null
   tensorboard_log: null
   create_eval_env: False
-  verbose: 0
+  verbose: True
   seed: 0
   device: "auto"
   _init_setup_model: True
@@ -27,9 +31,9 @@ base:
   
 safe_rl:
   safe_mult: False
+  safe_lagrange: False
   gamma_col_net: 0.6
   col_reward: -1
-  safe_lagrange: False
   tau: 0.005
   lr_schedule_step: 4
   td_lambda_col_target: 0.98
@@ -41,7 +45,3 @@ safe_rl:
   n_col_value_samples: 20
   optimize_gamma_col_net: False
   gamma_col_net_target: 0.8
-
-policy_kwargs:
-  use_beta_dist: False
-  use_bayes: False
