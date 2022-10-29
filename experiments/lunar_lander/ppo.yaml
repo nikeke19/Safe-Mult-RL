@@ -14,7 +14,6 @@ seed: 0
 
 train:
   time_steps: 150_000
-
 eval:
   evaluation_cb:
     save_model: False

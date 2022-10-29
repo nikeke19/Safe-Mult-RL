@@ -24,10 +24,15 @@ eval:
 
 model:
   base:
-    tau: 0.01
-    learning_starts: 10_000
+    n_steps: 1024
+    gae_lambda: 0.98
+    target_kl: 0.02
+    clip_range: 0.15
+    policy_kwargs:
+      use_beta_dist: True
   safe_rl:
     safe_mult: True
-    safe_version: "Legacy"
+    safe_lagrange: True
+    advantage_mode: "V2a"
     gamma_col_net: 0.95
-    l_multiplier_init: 5.0
+    l_multiplier_init: 1.0

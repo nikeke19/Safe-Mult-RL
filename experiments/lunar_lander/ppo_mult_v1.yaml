@@ -14,7 +14,6 @@ seed: 0
 
 train:
   time_steps: 150_000
-
 eval:
   evaluation_cb:
     save_model: False
@@ -34,5 +33,6 @@ model:
   safe_rl:
     safe_mult: True
     safe_lagrange: True
+    advantage_mode: "V1a"
     gamma_col_net: 0.95
     l_multiplier_init: 1.0
