@@ -125,7 +125,7 @@ class CarRacing(gym.Env, EzPickle):
     metadata = {"render.modes": ["human", "rgb_array", "state_pixels"],
                 "video.frames_per_second": FPS}
 
-    def __init__(self, collision_reward=-10, discrete=False, multi_input=False, speed_limit=None, verbose=1):
+    def __init__(self, collision_reward=-10, discrete=False, multi_input=True, speed_limit=50, verbose=1):
         EzPickle.__init__(self)
         self.seed()
         self.contactListener_keepref = FrictionDetector(self)

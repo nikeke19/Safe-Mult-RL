@@ -26,9 +26,9 @@ class RandomBoxEnv(BaseBoxEnv):
 
     def __init__(self,
                  goal: np.ndarray = None,
-                 sparse_reward: bool = False,
+                 sparse_reward: bool = True,
                  observation_space: str = "oc_grid",
-                 step_penalty: float = 0.5,
+                 step_penalty: float = 0.1,
                  n_lidar_rays: int = 24,
                  verbose: bool = False):
         super(RandomBoxEnv, self).__init__(None, goal, sparse_reward)

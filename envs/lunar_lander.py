@@ -98,7 +98,7 @@ class LunarLander(gym.Env, EzPickle):
     @param easy_landing: If not enforcing 0 velocity but ground contact with both legs and velocity < 0.1 as landing 
     """
 
-    def __init__(self, continuous=False, hard_mode=False, normalize=False, easy_landing=False):
+    def __init__(self, continuous=True, hard_mode=True, normalize=False, easy_landing=True):
         EzPickle.__init__(self)
         self.seed()
         self.viewer = None
