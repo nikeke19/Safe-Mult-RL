@@ -50,9 +50,7 @@ def build_env(env_name: str, log_dir: str, seed: int = 0) -> Tuple[Env, Env, Uni
         wrapper = [{"wrapper": LunarLanderMonitor, "kwargs": dict(filename=monitor_log_dir, col_reward=-100)}]
         vec_wrapper = [{"wrapper": VecFrameStack, "kwargs": dict(n_stack=4)}]
     else:
-        raise NotImplementedError(
-            f" Environment {env_name} is not implemented. Choose from [lunar_lander, car_racing, point_navigation]"
-        )
+        raise NotImplemented(f"Env {env_name} is not implemented. Choose [lunar_lander, car_racing, point_navigation]")
 
     # Build Environments
     train_env = _build_one_env(env_func, env_kwargs, wrapper, vec_wrapper, seed)
@@ -62,6 +60,8 @@ def build_env(env_name: str, log_dir: str, seed: int = 0) -> Tuple[Env, Env, Uni
     video_env = None
     if env_name == "lunar_lander":
         video_folder = os.path.join(log_dir, "video")
+        if not os.path.isdir(video_folder):
+            os.mkdir(video_folder)
         video_kwargs = dict(video_folder=video_folder, record_video_trigger=lambda x: x % 1000 == 0, video_length=1000)
         vec_wrapper += [{"wrapper": VecVideoRecorder, "kwargs": video_kwargs}]
         video_env = _build_one_env(env_func, env_kwargs, wrapper, vec_wrapper, seed)

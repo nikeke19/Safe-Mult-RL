@@ -23,6 +23,8 @@ def build_callback(
     :return: List of callbacks
     """
     eval_dir = os.path.join(log_dir, "eval")
+    if not os.path.isdir(eval_dir):
+        os.mkdir(eval_dir)
 
     # Common kwargs
     model_path = None
@@ -33,9 +35,7 @@ def build_callback(
     if env_name == "lunar_lander":
         cb_func = LunarLanderEvalCallback
     else:
-        raise NotImplementedError(
-            f" Environment {env_name} is not implemented. Choose from [lunar_lander, car_racing, point_navigation]"
-        )
+        raise NotImplemented(f"Env {env_name} is not implemented. Choose [lunar_lander, car_racing, point_navigation]")
 
     # Building Eval Callback
     cb = [cb_func(eval_env, log_path=eval_dir, best_model_save_path=model_path, **cfg.evaluation_cb.kwargs)]
