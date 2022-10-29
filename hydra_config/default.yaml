@@ -2,3 +2,11 @@ defaults:
   - evaluation: evaluation
   - model: ppo
   - training: training
+
+load_model_dir: null
+seed: 0
+
+# Override common
+model:
+  base:
+    learning_rate: 100
