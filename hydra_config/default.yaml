@@ -1,10 +1,12 @@
 defaults:
-  - evaluation: evaluation
-  - model: ppo
-  - training: training
+  - eval: eval
+  - model: sac
+  - train: train
 
+env_name: "lunar_lander"
 load_model_dir: null
 seed: 0
+use_beta_dist: False
 
 # Override common
 model:

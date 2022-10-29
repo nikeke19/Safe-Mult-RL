@@ -1,3 +1,0 @@
-eval_freq: 50_000
-n_test_episodes: 100
-video_freq: null

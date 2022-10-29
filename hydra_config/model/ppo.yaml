@@ -1,3 +1,6 @@
+# PPO Config
+
+name: "PPO"
 base:
   learning_rate: 3e-4
   n_steps: 2048
