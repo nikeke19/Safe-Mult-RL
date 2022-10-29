@@ -1,0 +1,40 @@
+base:
+  learning_rate: 3e-4
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  clip_range_vf: null
+  ent_coef: 0.0
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  use_sde: False
+  sde_sample_freq: -1
+  target_kl: null
+  tensorboard_log: null
+  create_eval_env: False
+  policy_kwargs: null
+  verbose: 0
+  seed: 0
+  device: "auto"
+  _init_setup_model: True
+  auxiliary_tasks: null
+  
+safe_rl:
+  safe_mult: False
+  gamma_col_net: 0.6
+  col_reward: -1
+  safe_lagrange: False
+  tau: 0.005
+  lr_schedule_step: 4
+  td_lambda_col_target: 0.98
+  use_bayes: False
+  l_multiplier_init: 0.1
+  n_epochs_value_multiplier: 2
+  advantage_mode: "V1a"
+  n_lagrange_samples: 1
+  n_col_value_samples: 20
+  optimize_gamma_col_net: False
+  gamma_col_net_target: 0.8
