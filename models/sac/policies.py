@@ -333,11 +333,11 @@ class SACPolicy(BasePolicy):
 
     def set_training_mode(self, mode: bool) -> None:
         """
-        Put the policy in either training or evaluation mode.
+        Put the policy in either training or eval mode.
 
         This affects certain modules, such as batch normalisation and dropout.
 
-        :param mode: if true, set to training mode, else set to evaluation mode
+        :param mode: if true, set to training mode, else set to eval mode
         """
         self.actor.set_training_mode(mode)
         self.critic.set_training_mode(mode)

@@ -14,6 +14,7 @@ base:
   replay_buffer_class: null
   replay_buffer_kwargs: null
   optimize_memory_usage: False
+  policy_kwargs: ${model.policy_kwargs}
   ent_coef: "auto"
   target_update_interval: 1
   target_entropy: "auto"
@@ -22,7 +23,6 @@ base:
   use_sde_at_warmup: False
   tensorboard_log: null
   create_eval_env: False
-  policy_kwargs: null
   verbose: 0
   seed: null
   device: "auto"
@@ -40,3 +40,7 @@ safe_rl:
   optimize_gamma_col_net: False
   gamma_col_net_target: 0.8
   action_penalty: False
+
+policy_kwargs:
+  use_bayes: False
+  use_beta_dist: False

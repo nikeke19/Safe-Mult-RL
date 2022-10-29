@@ -28,12 +28,12 @@ class EvalCallbackTemplate(EvalCallback):
     :param n_eval_episodes: The number of episodes to test the agent
     :param eval_freq: Evaluate the agent every ``eval_freq`` call of the callback.
     :param log_path: Path to a folder where the evaluations (``evaluations.npz``)
-        will be saved. It will be updated at each evaluation.
+        will be saved. It will be updated at each eval.
     :param best_model_save_path: Path to a folder where the best model
         according to performance on the eval env will be saved.
-    :param deterministic: Whether the evaluation should
+    :param deterministic: Whether the eval should
         use a stochastic or deterministic actions.
-    :param render: Whether to render or not the environment during evaluation
+    :param render: Whether to render or not the environment during eval
     :param verbose:
     :param warn: Passed to ``evaluate_policy`` (warns if ``eval_env`` has not been
         wrapped with a Monitor wrapper)
@@ -128,7 +128,7 @@ class EvalCallbackTemplate(EvalCallback):
                         print(f"Success rate: {100 * success_rate:.2f}%")
                     self.logger.record("eval/success_rate", success_rate)
 
-                # Dump log so the evaluation results are printed with the correct timestep
+                # Dump log so the eval results are printed with the correct timestep
                 self.logger.record("time/total timesteps", self.num_timesteps, exclude="tensorboard")
                 self.logger.dump(self.num_timesteps)
 
@@ -171,7 +171,7 @@ class EvalCallbackTemplate(EvalCallback):
             If environment has not been wrapped with ``Monitor`` wrapper, reward and
             episode lengths are counted as it appears with ``env.step`` calls. If
             the environment contains wrappers that modify rewards or episode lengths
-            (e.g. reward scaling, early episode reset), these will affect the evaluation
+            (e.g. reward scaling, early episode reset), these will affect the eval
             results as well. You can avoid this by wrapping environment with ``Monitor``
             wrapper before anything else.
 
@@ -187,7 +187,7 @@ class EvalCallbackTemplate(EvalCallback):
         :param return_episode_rewards: If True, a list of rewards and episode lengths
             per episode will be returned instead of the mean.
         :param warn: If True (default), warns user about lack of a Monitor wrapper in the
-            evaluation environment.
+            eval environment.
         :param log_into_video: Whether to display key stats in the video
         :return: Mean reward per episode, std of reward per episode.
             Returns ([float], [int]) when ``return_episode_rewards`` is True, first

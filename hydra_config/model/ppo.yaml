@@ -13,12 +13,12 @@ base:
   ent_coef: 0.0
   vf_coef: 0.5
   max_grad_norm: 0.5
+  policy_kwargs: ${model.policy_kwargs}
   use_sde: False
   sde_sample_freq: -1
   target_kl: null
   tensorboard_log: null
   create_eval_env: False
-  policy_kwargs: null
   verbose: 0
   seed: 0
   device: "auto"
@@ -41,3 +41,7 @@ safe_rl:
   n_col_value_samples: 20
   optimize_gamma_col_net: False
   gamma_col_net_target: 0.8
+
+policy_kwargs:
+  use_beta_dist: False
+  use_bayes: False
