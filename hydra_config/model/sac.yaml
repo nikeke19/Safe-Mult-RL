@@ -31,6 +31,7 @@ base:
   device: "auto"
   _init_setup_model: True
   auxiliary_tasks: null
+  action_penalty: False
 
 safe_rl:
   safe_mult: False
@@ -42,4 +43,3 @@ safe_rl:
   l_multiplier: 5.0
   optimize_gamma_col_net: False
   gamma_col_net_target: 0.8
-  action_penalty: False
