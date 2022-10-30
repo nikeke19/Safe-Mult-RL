@@ -1,5 +1,5 @@
 from omegaconf import DictConfig, OmegaConf
-from builders import build_env, build_callback, build_model
+from builders import build_logdir, build_env, build_callback, build_model
 import hydra
 import os
 
@@ -10,7 +10,8 @@ class Trainer:
         self._setup()
 
     def _setup(self):
-        self._setup_log_dir()
+        # self._setup_log_dir()
+        self.log_dir = build_logdir(self.cfg)
         self.train_env, self.eval_env, self.video_env = build_env(self.cfg.env_name, self.log_dir, self.cfg.seed)
         self.cb = build_callback(self.cfg.env_name, self.log_dir, self.eval_env, self.cfg.eval, self.video_env)
         self.model = build_model(self.cfg.env_name, self.train_env, self.cfg.model, self.log_dir, self.cfg.seed)
