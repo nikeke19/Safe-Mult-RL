@@ -16,7 +16,6 @@ base:
   max_grad_norm: 0.5
   policy_kwargs:
     use_beta_dist: False
-    use_bayes: False
     log_std_init: 0.0
   use_sde: False
   sde_sample_freq: -1
@@ -24,7 +23,7 @@ base:
   tensorboard_log: null
   create_eval_env: False
   verbose: True
-  seed: 0
+  seed: ${seed}
   device: "auto"
   _init_setup_model: True
   auxiliary_tasks: null

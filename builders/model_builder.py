@@ -1,4 +1,4 @@
-from omegaconf import DictConfig
+from omegaconf import DictConfig, OmegaConf
 from gym import Env
 from stable_baselines3.common.base_class import BaseAlgorithm
 from models import PPO, SAC
@@ -12,6 +12,15 @@ def _load_model(path: str, model_type: str, training_env: Env) -> BaseAlgorithm:
         return SAC.load(path, env=training_env)
     else:
         return PPO.load(path, env=training_env)
+
+
+def _omegaconf_to_dict(conf: DictConfig) -> dict:
+    """Cast the conf to dict and evaluate all expressions"""
+    target_dict = OmegaConf.to_container(conf)
+    for key, value in target_dict.items():
+        if isinstance(value, str) and "$" in value:
+            target_dict[key] = getattr(conf, key)
+    return target_dict
 
 
 def build_model(env_name: str, train_env: Env, cfg: DictConfig, log_dir: str, seed: int = 0) -> BaseAlgorithm:
@@ -33,14 +42,17 @@ def build_model(env_name: str, train_env: Env, cfg: DictConfig, log_dir: str, se
     if not os.path.isdir(cfg.base.tensorboard_log):
         os.mkdir(cfg.base.tensorboard_log)
 
+    # Casting to dict container
+    base_cfg = _omegaconf_to_dict(cfg.base)
+    safe_rl_cfg = _omegaconf_to_dict(cfg.safe_rl)
+
     # Setting up env specific kwargs
     if env_name == "lunar_lander":
         policy = "MlpPolicy"
         if cfg.name == "PPO":
-            cfg.base.ent_coef = get_linear_fn(0.02, 0, start_fraction=0.5, end_fraction=1)
+            base_cfg["ent_coef"] = get_linear_fn(0.02, 0, start_fraction=0.5, end_fraction=1)
         elif cfg.name == "SAC":
-            cfg.base.learning_rate = get_linear_fn(3e-4, 1e-8)
-
+            base_cfg["learning_rate"] = get_linear_fn(3e-4, 1e-8)
     else:
         raise NotImplemented(f"Env {env_name} is not implemented. Choose [lunar_lander, car_racing, point_navigation]")
 
@@ -53,4 +65,4 @@ def build_model(env_name: str, train_env: Env, cfg: DictConfig, log_dir: str, se
     else:
         raise NotImplemented(f"Model {cfg.name} is not implemented. Choose from [SAC, PPO]")
 
-    return model_func(policy, train_env, seed=seed, **cfg.base, **cfg.safe_rl)
+    return model_func(policy, train_env, **base_cfg, **safe_rl_cfg)

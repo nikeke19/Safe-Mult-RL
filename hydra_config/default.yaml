@@ -1,6 +1,6 @@
 defaults:
   - eval: eval
-  - model: sac
+  - model: ppo
   - train: train
 
 env_name: "lunar_lander"

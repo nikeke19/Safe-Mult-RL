@@ -18,6 +18,7 @@ base:
   policy_kwargs:
     use_bayes: False
     use_beta_dist: False
+    use_sde: False
   ent_coef: "auto"
   target_update_interval: 1
   target_entropy: "auto"
@@ -27,7 +28,7 @@ base:
   tensorboard_log: null
   create_eval_env: False
   verbose: True
-  seed: null
+  seed: ${seed}
   device: "auto"
   _init_setup_model: True
   auxiliary_tasks: null
