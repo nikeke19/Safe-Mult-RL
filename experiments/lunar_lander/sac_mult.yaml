@@ -24,4 +24,4 @@ model:
     safe_mult: True
     safe_version: "Legacy"
     gamma_col_net: 0.95
-    l_multiplier_init: 5.0
+    l_multiplier: 5.0
