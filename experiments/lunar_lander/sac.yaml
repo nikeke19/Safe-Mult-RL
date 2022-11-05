@@ -9,6 +9,11 @@
 # ---------- Code beyond this point are overridden parameters based from the default list.
 
 # Override hydra_config/default.yaml
+defaults:
+  - override /model: sac
+
+bullshit: "yes"
+
 env_name: "lunar_lander"
 seed: 0
 

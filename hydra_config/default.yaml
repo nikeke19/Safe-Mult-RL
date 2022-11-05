@@ -1,3 +1,7 @@
+hydra:
+  searchpath:
+    - pkg://experiments
+
 defaults:
   - eval: eval
   - model: ppo

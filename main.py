@@ -22,10 +22,19 @@ class Trainer:
         self.video_env.close()
 
 
+def print_cfg(cfg):
+    for key, value in cfg.items():
+        print(value)
+
+
 @hydra.main(version_base=None, config_path="hydra_config", config_name="default")
 def main(cfg: DictConfig):
-    # print(OmegaConf.to_yaml(cfg))
-    trainer = Trainer(cfg)
+    print_cfg(cfg)
+    print(cfg.model.name)
+    print(cfg.bullshit)
+    # trainer = Trainer(cfg)
+    # trainer.train()
+
 
 if __name__ == "__main__":
     print(os.getcwd())
