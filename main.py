@@ -29,9 +29,9 @@ def print_cfg(cfg):
 
 @hydra.main(version_base=None, config_path="hydra_config", config_name="default")
 def main(cfg: DictConfig):
-    print_cfg(cfg)
+    #print_cfg(cfg)
     print(cfg.model.name)
-    print(cfg.bullshit)
+    print(cfg.model.safe_rl)
     # trainer = Trainer(cfg)
     # trainer.train()
 

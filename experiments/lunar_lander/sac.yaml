@@ -1,18 +1,7 @@
 # @package _global_
 # The header # @package _global_ is added at top to update/add the items at root level
-# Meaning it will override the entries from default.yaml
-
-# Check more details here:
-# experiments/README.md
-# https://hydra.cc/docs/next/patterns/configuring_experiments/
-
-# ---------- Code beyond this point are overridden parameters based from the default list.
-
-# Override hydra_config/default.yaml
 defaults:
   - override /model: sac
-
-bullshit: "yes"
 
 env_name: "lunar_lander"
 seed: 0
