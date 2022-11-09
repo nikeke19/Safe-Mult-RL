@@ -25,6 +25,7 @@ model:
     policy_kwargs:
       use_beta_dist: True
   safe_rl:
+    col_reward: -100
     safe_mult: True
     safe_lagrange: True
     advantage_mode: "V1a"

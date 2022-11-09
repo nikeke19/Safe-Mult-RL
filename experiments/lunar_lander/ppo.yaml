@@ -24,3 +24,5 @@ model:
     clip_range: 0.15
     policy_kwargs:
       use_beta_dist: True
+  safe_rl:
+    col_reward: -100

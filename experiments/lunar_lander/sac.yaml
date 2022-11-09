@@ -20,3 +20,5 @@ model:
   base:
     tau: 0.01
     learning_starts: 10_000
+  safe_rl:
+    col_reward: -100

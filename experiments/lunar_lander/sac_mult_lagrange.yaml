@@ -21,6 +21,7 @@ model:
     tau: 0.01
     learning_starts: 10_000
   safe_rl:
+    col_reward: -100
     safe_mult: True
     safe_version: "Lagrange"
     gamma_col_net: 0.95
