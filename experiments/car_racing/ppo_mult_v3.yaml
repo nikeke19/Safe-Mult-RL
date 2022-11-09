@@ -1,0 +1,36 @@
+# @package _global_
+# The header # @package _global_ is added at top to update/add the items at root level
+defaults:
+  - override /model: ppo
+
+env_name: "car_racing"
+seed: 0
+
+train:
+  time_steps: 1_000_000
+eval:
+  evaluation_cb:
+    save_model: False
+    kwargs:
+      eval_freq: 250_000
+  video_cb:
+    video_freq: 1_000_000
+
+model:
+  base:
+    batch_size: 128
+    ent_coef: 0.01
+    n_epochs: 9
+    policy_kwargs:
+      log_std_init: -2
+    gae_lambda: 0.98
+    target_kl: 0.1
+    clip_range: 0.15
+  safe_rl:
+    col_reward: -10
+    td_lambda_col_target: 0.95
+    safe_mult: True
+    safe_lagrange: True
+    advantage_mode: "V2a"
+    gamma_col_net: 0.97
+    l_multiplier_init: 1.0

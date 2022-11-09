@@ -1,6 +1,6 @@
 from gym import Env
 from stable_baselines3.common.callbacks import BaseCallback
-from util.callbacks import LunarLanderEvalCallback
+from util.callbacks import LunarLanderEvalCallback, CarRacingEvalCallback
 from typing import List
 import os
 from omegaconf import DictConfig
@@ -34,6 +34,8 @@ def build_callback(
     # Env specific kwargs
     if env_name == "lunar_lander":
         cb_func = LunarLanderEvalCallback
+    elif env_name == "car_racing":
+        cb_func = CarRacingEvalCallback
     else:
         raise NotImplemented(f"Env {env_name} is not implemented. Choose [lunar_lander, car_racing, point_navigation]")
 

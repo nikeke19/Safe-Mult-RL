@@ -4,6 +4,7 @@ from stable_baselines3.common.base_class import BaseAlgorithm
 from models import PPO, SAC
 import os
 from models.common.util import get_linear_fn
+import warnings
 
 
 def _load_model(path: str, model_type: str, training_env: Env) -> BaseAlgorithm:
@@ -53,6 +54,10 @@ def build_model(env_name: str, train_env: Env, cfg: DictConfig, log_dir: str, se
             base_cfg["ent_coef"] = get_linear_fn(0.02, 0, start_fraction=0.5, end_fraction=1)
         elif cfg.name == "SAC":
             base_cfg["learning_rate"] = get_linear_fn(3e-4, 1e-8)
+    elif env_name == "car_racing":
+        if cfg.name == "PPO":
+            warnings.warn("For Car Racing only PPO runs succesfully")
+        policy = "MultiInputPolicy"
     else:
         raise NotImplemented(f"Env {env_name} is not implemented. Choose [lunar_lander, car_racing, point_navigation]")
 

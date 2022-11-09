@@ -1,1 +1,2 @@
 from util.callbacks.lunar_lander_eval_cb import LunarLanderEvalCallback
+from util.callbacks.callback_template import EvalCallbackTemplate as CarRacingEvalCallback

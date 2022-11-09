@@ -1,8 +1,9 @@
 from gym import Env
 from typing import Union, List, Tuple
-from stable_baselines3.common.vec_env import VecVideoRecorder, DummyVecEnv, VecFrameStack
-from util.monitors.lunar_lander_monitor import LunarLanderMonitor
-from envs import LunarLander
+from stable_baselines3.common.vec_env import VecVideoRecorder, DummyVecEnv, VecFrameStack, VecTransposeImage
+from models.common.wrappers import GrayScaleObservation, ResizeObservation
+from util.monitors import LunarLanderMonitor, CarRacingMonitor
+from envs import LunarLander, CarRacing
 import os
 
 
@@ -49,6 +50,14 @@ def build_env(env_name: str, log_dir: str, seed: int = 0) -> Tuple[Env, Env, Uni
         env_func = LunarLander
         wrapper = [{"wrapper": LunarLanderMonitor, "kwargs": dict(filename=monitor_log_dir, col_reward=-100)}]
         vec_wrapper = [{"wrapper": VecFrameStack, "kwargs": dict(n_stack=4)}]
+    elif env_name == "car_racing":
+        env_func = CarRacing
+        wrapper = [
+            {"wrapper": ResizeObservation, "kwargs": dict(shape=64)},
+            {"wrapper": GrayScaleObservation, "kwargs": dict(keep_dim=True)},
+            {"wrapper": CarRacingMonitor, "kwargs": dict(filename=monitor_log_dir, col_reward=-10)},
+        ]
+        vec_wrapper = [{"wrapper": VecTransposeImage, "kwargs": dict()}]
     else:
         raise NotImplemented(f"Env {env_name} is not implemented. Choose [lunar_lander, car_racing, point_navigation]")
 
@@ -58,17 +67,26 @@ def build_env(env_name: str, log_dir: str, seed: int = 0) -> Tuple[Env, Env, Uni
 
     # Building Video Env
     video_env = None
-    if env_name == "lunar_lander":
+    if env_name in ["lunar_lander", "car_racing"]:
+        # Shared params
         video_folder = os.path.join(log_dir, "video")
         if not os.path.isdir(video_folder):
             os.mkdir(video_folder)
         video_kwargs = dict(video_folder=video_folder, record_video_trigger=lambda x: x % 1000 == 0, video_length=1000)
-        vec_wrapper += [{"wrapper": VecVideoRecorder, "kwargs": video_kwargs}]
+
+        # Specific params
+        if env_name == "lunar_lander":
+            vec_wrapper += [{"wrapper": VecVideoRecorder, "kwargs": video_kwargs}]
+        elif env_name == "car_racing":
+            vec_wrapper = [
+                {"wrapper": VecVideoRecorder, "kwargs": video_kwargs},
+                {"wrapper": VecTransposeImage, "kwargs": dict()},
+            ]
         video_env = _build_one_env(env_func, env_kwargs, wrapper, vec_wrapper, seed)
 
     return train_env, eval_env, video_env
 
 
 if __name__ == '__main__':
-    envs = build_env("lunar_lander", log_dir="logs")
+    envs = build_env("car_racing", log_dir="../logs")
     print("finished")
