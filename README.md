@@ -45,6 +45,11 @@ For running `PPO Mult V1` in `Lunar Lander Safe`, simply execute:
 ```bash
 python main.py +lunar_lander=ppo_mult_v1
 ```
-All the experiment configs can be found under the `experiments` folder. In this example, the experiment 
+For executing the Lagrangian baseline `PPO Lagrange` in `Car Racing Safe`, simply execute:
+```bash
+python main.py +car_racing=ppo_lagrange
+```
+
+All the experiment configs can be found under the `experiments` folder. In the example of lunar lander, the experiment 
 is under `experiments/lunar_lander/ppo_mult_v1.yaml`.
 
