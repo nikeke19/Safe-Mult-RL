@@ -1,0 +1,28 @@
+# @package _global_
+# The header # @package _global_ is added at top to update/add the items at root level
+defaults:
+  - override /model: sac
+
+env_name: "lunar_lander"
+seed: 0
+
+train:
+  time_steps: 150_000
+eval:
+  evaluation_cb:
+    save_model: False
+    kwargs:
+      eval_freq: 50_000
+  video_cb:
+    video_freq: 150_000
+
+model:
+  base:
+    tau: 0.01
+    learning_starts: 10_000
+  safe_rl:
+    col_reward: -100
+    safe_mult: True
+    safe_version: "Clipped"
+    gamma_col_net: 0.95
+    l_multiplier: 5.0

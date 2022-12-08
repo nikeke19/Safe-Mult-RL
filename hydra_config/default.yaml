@@ -1,0 +1,15 @@
+hydra:
+  searchpath:
+    - pkg://experiments
+
+defaults:
+  - eval: eval
+  - model: ppo
+  - train: train
+
+env_name: "lunar_lander"
+seed: 0
+
+model:
+  base:
+    device: "cuda"

@@ -1,0 +1,13 @@
+evaluation_cb:
+  save_model: False
+  kwargs:
+    eval_freq: 50_000
+    n_eval_episodes: 100
+    render: False
+    verbose: True
+
+video_cb:
+  video_freq: null
+  kwargs:
+    n_eval_episodes: 1
+    log: False
