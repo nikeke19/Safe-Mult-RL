@@ -1,6 +1,6 @@
 # A Multiplicative Value Function for Safe and Efficient Reinforcement Learning
 
-This repo is for our paper `"A Multiplicative Value Function for Safe RL"` submitted to ICRA 2023.
+This repo is for our paper `"A Multiplicative Value Function for Safe RL"` submitted to IROS 2023.
 
 **Authors**: Nick Bührer, Zhejun Zhang, Alexander Liniger, Fisher Yu and Luc Van Gool.
 
