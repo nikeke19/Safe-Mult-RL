@@ -7,7 +7,7 @@
 </p>
 
 > **A Multiplicative Value Function for Safe and Efficient Reinforcement Learning**            
-> [Nick Bührer](https://www.linkedin.com/in/nick-b%C3%BChrer-250b46174/?originalSubdomain=sg), [Zhejun Zhang](https://zhejz.github.io/), [Alexander Liniger](https://scholar.google.com/citations?user=amb0lc0AAAAJ&hl=en), Fisher Yu and [Luc Van Gool](https://vision.ee.ethz.ch/people-details.OTAyMzM=.TGlzdC8zMjcxLC0xOTcxNDY1MTc4.html).<br/>
+> [Nick Bührer](https://www.linkedin.com/in/nick-b%C3%BChrer-250b46174/?originalSubdomain=sg), [Zhejun Zhang](https://zhejz.github.io/), [Alexander Liniger](https://alexliniger.github.io/), Fisher Yu and [Luc Van Gool](https://vision.ee.ethz.ch/people-details.OTAyMzM=.TGlzdC8zMjcxLC0xOTcxNDY1MTc4.html).<br/>
 > 
 > [IROS 2023](https://ieee-iros.org/)<br/>
 > [Project Website with Videos](https://zhejz.github.io/saferl)<br/>
