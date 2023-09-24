@@ -16,7 +16,7 @@
 ```bibtex
 @inproceedings{buehrer2023saferl,
   title     = {A Multiplicative Value Function for Safe and Efficient Reinforcement Learning},
-  author    = {Nick B{\"u}hrer, Zhejun Zhang, Alexander Liniger, Fisher Yu, and Luc Van Gool},
+  author    = {B{\"u}hrer, Nick and Zhang, Zhejun and Liniger, Alexander and Yu, Fisher and Van Gool, Luc},
   booktitle = {International Conference on Intelligent Robots and Systems (IROS)},
   year = {2023}
 }
